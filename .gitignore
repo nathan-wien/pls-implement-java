@@ -1,0 +1,23 @@
+# checkstyle jar
+checkstyle.jar
+
+# jqwik
+.jqwik-database
+
+# JetBrains
+# User-specific stuff
+.idea/
+*.iml
+*.ipr
+# File-based project format
+*.iws
+# Build output
+out/
+target/
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties

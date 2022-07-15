@@ -1,0 +1,8 @@
+repos:
+  # Checkstyle for Java files.
+  - repo: local
+    hooks:
+      - id: checkstyle
+        name: checkstyle
+        language: script
+        entry: "./checkstyle.sh"
