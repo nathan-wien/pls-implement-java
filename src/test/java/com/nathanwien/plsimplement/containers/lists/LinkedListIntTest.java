@@ -1,6 +1,7 @@
 package com.nathanwien.plsimplement.containers.lists;
 
 import com.nathanwien.plsimplement.containers.lists.linkedlist.LinkedListInt;
+import net.jqwik.api.Disabled;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Group;
 import net.jqwik.api.Property;
@@ -8,6 +9,7 @@ import net.jqwik.api.Property;
 public class LinkedListIntTest {
 
     @Group
+    @Disabled
     class PushBackShould {
         @Property
         boolean maintainLinksProperly(@ForAll int[] pushOrder) {
@@ -32,6 +34,7 @@ public class LinkedListIntTest {
     }
 
     @Group
+    @Disabled
     class PushFrontShould {
         @Property
         boolean maintainLinksProperly(@ForAll int[] pushOrder) {
@@ -56,6 +59,7 @@ public class LinkedListIntTest {
     }
 
     @Group
+    @Disabled
     class ReverseShould {
         @Property
         boolean maintainLinksProperly(@ForAll int[] pushBackOrder) {
