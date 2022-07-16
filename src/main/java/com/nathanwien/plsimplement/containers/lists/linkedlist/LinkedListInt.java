@@ -33,6 +33,19 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
     }
 
     /**
+     * Counts the real number of nodes in the list (mainly for testing purpose)
+     */
+    public int getNodeCount() {
+        Node cur = head;
+        int count = 0;
+        while (cur != null) {
+            count++;
+            cur = cur.getNext();
+        }
+        return count;
+    }
+
+    /**
      * Converts the list to an array
      *
      * @return an array copy of the list
@@ -131,9 +144,18 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
         if (head == null) {
             throw new IllegalStateException("LinkedListInt is empty");
         }
-        int value = head.getValue();
-        head = head.getNext();
-        return value;
+        Node prev = null;
+        Node cur = head;
+        while (cur.getNext() != null) {
+            prev = cur;
+            cur = cur.getNext();
+        }
+        // cur is now tail
+        if (prev != null) {
+            prev.setNext(null);
+        }
+        size--;
+        return cur.getValue();
     }
 
     /**
@@ -158,11 +180,16 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
 
     private Node reverseFrom(Node node) {
         if (node == null) {
-            return node;
+            return null;
         }
         Node next = node.getNext();
-        Node newHead = reverseFrom(next);
-        next.setNext(node);
-        return newHead;
+        if (next == null) {
+            return node;
+        } else {
+            Node newHead = reverseFrom(next);
+            next.setNext(node);
+            node.setNext(null);
+            return newHead;
+        }
     }
 }

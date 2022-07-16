@@ -2,34 +2,80 @@ package com.nathanwien.plsimplement.containers.lists;
 
 import com.nathanwien.plsimplement.containers.lists.linkedlist.LinkedListInt;
 import net.jqwik.api.ForAll;
+import net.jqwik.api.Group;
 import net.jqwik.api.Property;
 
 public class LinkedListIntTest {
-    @Property
-    boolean pushBackCorrectly(@ForAll int[] pushOrder) {
-        LinkedListInt linkedList = new LinkedListInt();
-        for (int value : pushOrder) {
-            linkedList.pushBack(value);
+
+    @Group
+    class PushBackShould {
+        @Property
+        boolean maintainLinksProperly(@ForAll int[] pushOrder) {
+            LinkedListInt linkedList = new LinkedListInt();
+            for (int value : pushOrder) {
+                linkedList.pushBack(value);
+                if (linkedList.getSize() != linkedList.getNodeCount()) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return areEqual(pushOrder, linkedList);
+
+        @Property
+        boolean pushBackProperly(@ForAll int[] pushOrder) {
+            LinkedListInt linkedList = new LinkedListInt();
+            for (int value : pushOrder) {
+                linkedList.pushBack(value);
+            }
+            return areEqual(pushOrder, linkedList);
+        }
     }
 
-    @Property
-    boolean pushFrontCorrectly(@ForAll int[] pushOrder) {
-        LinkedListInt linkedList = new LinkedListInt();
-        for (int value : pushOrder) {
-            linkedList.pushFront(value);
+    @Group
+    class PushFrontShould {
+        @Property
+        boolean maintainLinksProperly(@ForAll int[] pushOrder) {
+            LinkedListInt linkedList = new LinkedListInt();
+            for (int value : pushOrder) {
+                linkedList.pushFront(value);
+                if (linkedList.getSize() != linkedList.getNodeCount()) {
+                    return false;
+                }
+            }
+            return true;
         }
-        return areEqual(reverse(pushOrder), linkedList);
+
+        @Property
+        boolean pushFrontProperly(@ForAll int[] pushOrder) {
+            LinkedListInt linkedList = new LinkedListInt();
+            for (int value : pushOrder) {
+                linkedList.pushFront(value);
+            }
+            return areEqual(reverse(pushOrder), linkedList);
+        }
     }
 
-    @Property
-    boolean reverseCorrectly(@ForAll int[] pushBackOrder) {
-        LinkedListInt linkedList = new LinkedListInt();
-        for (int value : pushBackOrder) {
-            linkedList.pushFront(value);
+    @Group
+    class ReverseShould {
+        @Property
+        boolean maintainLinksProperly(@ForAll int[] pushBackOrder) {
+            LinkedListInt linkedList = new LinkedListInt();
+            for (int value : pushBackOrder) {
+                linkedList.pushBack(value);
+            }
+            linkedList.reverse();
+            return linkedList.getSize() == linkedList.getNodeCount();
         }
-        return areEqual(reverse(pushBackOrder), linkedList);
+
+        @Property
+        boolean reverseCorrectly(@ForAll int[] pushFrontOrder) {
+            LinkedListInt linkedList = new LinkedListInt();
+            for (int value : pushFrontOrder) {
+                linkedList.pushFront(value);
+            }
+            linkedList.reverse();
+            return areEqual(pushFrontOrder, linkedList);
+        }
     }
 
     /**
