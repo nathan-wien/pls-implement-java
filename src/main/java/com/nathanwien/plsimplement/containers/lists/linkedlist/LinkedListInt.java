@@ -8,7 +8,7 @@ import com.nathanwien.plsimplement.containers.lists.IsIntList;
  */
 public class LinkedListInt implements IsIntContainer, IsIntList {
     private Node head;
-    int size;
+    private int size;
 
     public LinkedListInt() {
         head = null;
