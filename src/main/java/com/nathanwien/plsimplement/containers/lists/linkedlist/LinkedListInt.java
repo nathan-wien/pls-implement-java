@@ -60,6 +60,49 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
         return a;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        Node node = head;
+        while (node != null) {
+            sb.append(node.getValue());
+            if (node.getNext() != null) {
+                sb.append(" ");
+            }
+            node = node.getNext();
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    /**
+     * Adds a value to the front (start) of the list
+     *
+     * @param value the value added to the front
+     */
+    @Override
+    public void pushFront(int value) {
+        head = new Node(value, head);
+        size++;
+    }
+
+    /**
+     * Add a value to the front (start) of the list
+     *
+     * @param value the value added to the back
+     */
+    @Override
+    public void pushBack(int value) {
+        Node newNode = new Node(value);
+        if (head == null) {
+            head = newNode;
+        } else {
+            getTailNode().setNext(newNode);
+        }
+        size++;
+    }
+
     /**
      * Gets the value at the front (start) of the list
      *
@@ -91,33 +134,6 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
     }
 
     /**
-     * Adds a value to the front (start) of the list
-     *
-     * @param value the value added to the front
-     */
-    @Override
-    public void pushFront(int value) {
-        head = new Node(value, head);
-        size++;
-    }
-
-    /**
-     * Add a value to the front (start) of the list
-     *
-     * @param value the value added to the back
-     */
-    @Override
-    public void pushBack(int value) {
-        Node newNode = new Node(value);
-        if (head == null) {
-            head = newNode;
-        } else {
-            getTailNode().setNext(newNode);
-        }
-        size++;
-    }
-
-    /**
      * Removes and returns the value at the front (start) of the list
      *
      * @return the value popped from the front
@@ -130,6 +146,7 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
         }
         int value = head.getValue();
         head = head.getNext();
+        size--;
         return value;
     }
 
@@ -153,6 +170,8 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
         // cur is now tail
         if (prev != null) {
             prev.setNext(null);
+        } else {
+            head = null;
         }
         size--;
         return cur.getValue();
