@@ -5,7 +5,7 @@ import com.nathanwien.plsimplement.containers.lists.IsIntList;
 
 public class LinkedListInt implements IsIntContainer, IsIntList {
     private Node head;
-    int size;
+    private int size;
 
     public LinkedListInt() {
         head = null;
@@ -60,6 +60,22 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
         return a;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        Node node = head;
+        while (node != null) {
+            sb.append(node.getValue());
+            if (node.getNext() != null) {
+                sb.append(" ");
+            }
+            node = node.getNext();
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
     /**
      * Adds a value to the front (start) of the list
      *
@@ -71,12 +87,56 @@ public class LinkedListInt implements IsIntContainer, IsIntList {
     }
 
     /**
-     * Add a value to the front (start) of the list
+     * Adds a value to the front (start) of the list
      *
      * @param value the value added to the back
      */
     @Override
     public void pushBack(int value) {
+        throw new RuntimeException("Unimplemented");
+    }
+
+    /**
+     * Gets the value at the front (start) of the list
+     *
+     * @return the value at the front of the list
+     * @throws IllegalStateException if the list is empty
+     */
+    @Override
+    public int getFront() throws IllegalStateException {
+        throw new RuntimeException("Unimplemented");
+    }
+
+    /**
+     * Gets the value at the back (end) of the list
+     *
+     * @return the value at the back of the list
+     * @throws IllegalStateException if the list is empty
+     */
+    @Override
+    public int getBack() throws IllegalStateException {
+        throw new RuntimeException("Unimplemented");
+    }
+
+    /**
+     * Removes and returns the value at the front (start) of the list
+     *
+     * @return the value popped from the front
+     * @throws IllegalStateException if the list is empty
+     */
+    @Override
+    public int popFront() throws IllegalStateException {
+        throw new RuntimeException("Unimplemented");
+    }
+
+    /**
+     * Removes and returns the value at the back (end) of the list
+     *
+     * @return the value popped from the back
+     * @throws IllegalStateException if the list is empty
+     */
+    @Override
+    public int popBack() {
         throw new RuntimeException("Unimplemented");
     }
 
