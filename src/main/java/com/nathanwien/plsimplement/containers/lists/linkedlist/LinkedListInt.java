@@ -3,6 +3,9 @@ package com.nathanwien.plsimplement.containers.lists.linkedlist;
 import com.nathanwien.plsimplement.containers.lists.IsIntContainer;
 import com.nathanwien.plsimplement.containers.lists.IsIntList;
 
+/**
+ * Have a look at docs/01-linked-list.md
+ */
 public class LinkedListInt implements IsIntContainer, IsIntList {
     private Node head;
     private int size;
